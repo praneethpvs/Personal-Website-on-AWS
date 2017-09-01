@@ -1,0 +1,7 @@
+Options +FollowSymlinks
+RewriteEngine on
+rewriterule ^wp-content/uploads/(.*)$ http://<Your Cloud Front Domain Name>/$1 [r=301,nc]
+
+# BEGIN WordPress
+
+# END WordPress
