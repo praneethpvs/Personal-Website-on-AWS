@@ -28,6 +28,31 @@ Type | protocol | Port Range | Source
 ------------ | ------------- | ------------- | -------------
 MySQL/Aurora(3306) | TCP(6) | 3306 | Web Security group ID
 
-4. Next Setting up and Application Load Balancer. We can use either an Elastic load balancer or Applicaion load balancer. Since Applicaton Load balancer(ALB) is cheaper in price(if it exceeds free tier) i had chosen to go with ALB
+4. Next Setting up and Application Load Balancer. We can use either an Elastic load balancer or Applicaion load balancer. Since Applicaton Load balancer(ALB) is cheaper in price(if it exceeds free tier) i had chosen to go with ALB. Health check is done on the file ```healthy.html```.  
+  
+* Go back to *Route53* and create a RecordSet of your domain which points to your ***Application Load Balancer***.  
+* I have setup the RecordSet name is as a Naked Domain and used an **Alias Record**_(Yes)_.
+ 
+5. Now setting up the s3 buckets. One bucket is to serve the web content and the other bucket is to serve the media content using CloudFront. This helps in serving the media in an Accelerated way to the end user.  
+  
+The buckets which i used are ```pvspraneeth-web-code``` and ```pvspraneeth-web-media```.  
+  
+6. Now provision a CloudFront CDN network. Since we are serving web content i had chosen to setup a ```web distribution```.
+* The origin is going to be the bucket ```pvspraneeth-web-media```.  
+* Enable **Restrict Bucket Access**_(yes)_ so that the users get the data from the S3 bucket that we had setit up.
+* Next **Grant Read permissions on bucket**_(Yes, Update bucket Policy)_. This helps to access the media which we upload publicly.
 
-Health check is done on the file healthy.html
+7. The nect step is to provision the RDS Instance.
+* I had chosen to select the **MySQL Community edition** and made this as an **Dev/Test** Instance _(Stays in free tier)_.
+* Select the DB Instance class as: **db.t2.micro**
+* Disable the Multi-AZ Deployment to stay in free tier.
+* Choose your preferred **Db Instance Identifier, Master Username & Master Password**.
+* use the **Rds Security group** which we had created earlier & Make the publicly accessible option to **No**.
+* Choose you Database name and leave everything as default & Launch the DB Instance.
+
+8. The next step is setting up the Ec2 Instance.
+* Use the default VPC and the role which we created before``` ec2-s3-adminAccess ```.
+* In the Advanced details use the ```WebserverbashScript.sh``` to setup the Ec2 Instances as a Web Server for hosting your website.
+* Once your Ec2 Instance is up and running, go to the **Target groups** of your ALB and add your Ec2 Instance to the **Registered Instances**_(In target section)_. 
+* Once the Instance passes the health check, you should be able to type in your domain name and the Wordpress screen shows up. Follow the Instructions on the screen and finish the word press setup.  
+*Note: For the Db endpoint go the RDS Instance and copy its Endpoint*.
