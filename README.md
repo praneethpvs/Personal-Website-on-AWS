@@ -56,3 +56,10 @@ The buckets which i used are ```pvspraneeth-web-code``` and ```pvspraneeth-web-m
 * Once your Ec2 Instance is up and running, go to the **Target groups** of your ALB and add your Ec2 Instance to the **Registered Instances**_(In target section)_. 
 * Once the Instance passes the health check, you should be able to type in your domain name and the Wordpress screen shows up. Follow the Instructions on the screen and finish the word press setup.  
 *Note: For the Db endpoint go the RDS Instance and copy its Endpoint*.
+
+9. Now we need to enable URL Re-writes so that the content can be served from the cloud front distribution.
+* Use the ```htaccess.txt``` file from the above to enable the URL Re-writes.
+* Execute the following commands to enable the URL Re-write.
+```
+wget 
+```
