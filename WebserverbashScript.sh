@@ -1,6 +1,15 @@
 #!/bin/bash
 yum update -y
-yum install php php-mysql http stress -y
+yum install php php-mysql http -y
+yum install -y gcc make
+yum install -y php-pear
+pear install Log
+yum install -y pcre-devel
+yum install -y php56-opcache
+yum install -y re2c
+yum install -y mod24_ssl
+yum install -y memcached
+yum install -y php56-pecl-memcached
 cd /etc/httpd/conf
 cp httpd.conf httpdbackup.conf
 rm -rf httpd.conf
