@@ -8,7 +8,6 @@ The first step that i had done was to design a basic architecture that is highly
 
 ### STEP-1.
 * The first thing that i had done was to get a domain from AWS. Since it is a registrar we can get domains directly from AWS.  
-* Here is my Domain Name: http://pvspraneeth.com
 
 ### STEP-2.
 * The second step is creating a role where my Ec2 Instances will be able to communicate with the S3 buckets. This helps in improving the security of my AWS instances as my secret access key and password are not stored in the Ec2 instance.  
