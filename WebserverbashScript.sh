@@ -1,6 +1,6 @@
 #!/bin/bash
 yum update -y
-yum install php php-mysql http -y
+yum install php php-mysql httpd -y
 yum install -y gcc make
 yum install -y php-pear
 pear install Log
