@@ -10,10 +10,12 @@ yum install -y re2c
 yum install -y mod24_ssl
 yum install -y memcached
 yum install -y php56-pecl-memcached
+yum install php-xml
+httpd -k restart
 cd /etc/httpd/conf
 cp httpd.conf httpdbackup.conf
 rm -rf httpd.conf
-wget https://github.com/praneethpvs/Personal-Website-on-AWS/blob/master/httpd.conf
+wget https://s3-eu-west-1.amazonaws.com/acloudguru-wp/httpd.conf
 cd /var/www/html
 echo "This instance is healthy" > healthy.html
 wget https://wordpress.org/latest.tar.gz
