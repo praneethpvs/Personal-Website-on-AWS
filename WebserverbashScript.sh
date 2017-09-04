@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo su
 yum update -y
 yum install php php-mysql httpd -y
 yum install -y gcc make
