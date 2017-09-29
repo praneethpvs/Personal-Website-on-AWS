@@ -1,4 +1,4 @@
-# Personal-Website-on-AWS
+# Portfolio-Website-on-AWS
 
 The first step that i had done was to design a basic architecture that is highly available. I had limited the scope of the architecture to the free tier. The architecture that i have designed is shown below.  
   
