@@ -94,7 +94,8 @@ nano crontab
 Finally placing your Ec2 Instance behind an Auto Scaling group.
 * Stop your Instance and take a **snapshot** of the Ec2 Instance.
 * Create a Launch configuration using the snapshot taken above.
-* Now create a Auto Scaling Group from the above Launch configuration and place it in the default vpc.
+* Now create a Auto Scaling Group from the above Launch configuration, upload the above file **{AsgUserdata.sh}** in the Advanced settings.
+* place the above autoscaling group in the default vpc.
 * _Enable recieve traffic from one or more Load Balancers_ and choose the target group of the original web server.
 * Health checks type is done based on the ELB.
 * Configure Scaling policy based on the requirements. I have chosen to keep it the default size so that it will not exceed 750 hrs of free usage.
